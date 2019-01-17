@@ -1,0 +1,21 @@
+.LOGTABLE SaumyaGupta_employee_log;  
+.LOGON 10.58.0.66/td_user23,td_user23;  
+   .BEGIN EXPORT;  
+      .EXPORT OUTFILE employeedata_164150.csv
+      MODE RECORD FORMAT TEXT;
+	SELECT distinct cast(cast((cast( 'in_EmployeeNo' AS CHAR(10))|| ',' ||cast ('in_FirstName' AS CHAR(15))  || ',' || cast('in_LastName' AS CHAR(15))|| ',' || cast('in_BirthDate' AS CHAR(10))) AS CHAR(150)) AS char(150))    FROM DBC.DBCINFO;
+	SELECT  cast(cast(CAST(in_EmployeeNo AS CHAR(10)) || ',' ||
+         CAST(in_FirstName AS CHAR(15)) || ',' ||
+         CAST(in_LastName AS CHAR(15)) || ',' ||
+         CAST(in_BirthDate AS CHAR(10)) as char(60)) as char(60)) 
+	FROM  
+	 SaumyaGupta_Employee_stg_10;
+   .END EXPORT;
+.LOGOFF;
+
+
+
+
+
+
+12:47 PM 12/25/2018

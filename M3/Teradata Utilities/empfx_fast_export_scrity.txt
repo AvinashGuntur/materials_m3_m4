@@ -1,0 +1,21 @@
+.LOGTABLE rad_employee_log;  
+.LOGON 10.58.0.66/td_user23,td_user23;  
+   .BEGIN EXPORT SESSIONS 2;  
+      .EXPORT OUTFILE C:\employeedata.txt  
+      MODE RECORD FORMAT TEXT;
+      SELECT CAST(EmployeeNo AS CHAR(10)),
+         CAST(FirstName AS CHAR(15)), 
+         CAST(LastName AS CHAR(15)), 
+         CAST(BirthDate AS CHAR(10))   
+      FROM
+      rad_Employee_stg;
+   .END EXPORT;
+.LOGOFF;
+
+
+
+
+
+
+
+

@@ -1,0 +1,76 @@
+.LOGTABLE Shivi_EMP_STG_LT1;
+ LOGON 10.58.0.66/td_user20,td_user20;
+.BEGIN IMPORT MLOAD
+ TABLES      Shivi_EMPLOYEE_STG_10,Shivi_EMPLOYEE_STG_20
+ WORKTABLES  Shivi_EMPLOYEE_WT1,Shivi_EMPLOYEE_WT2
+ ERRORTABLES Shivi_EMPLOYEE_ET1 Shivi_EMPLOYEE_UV1,
+ Shivi_EMPLOYEE1_ET1 Shivi_EMPLOYEE1_UV1 ;
+
+.LAYOUT Shivi_EMPLOYEE_STG;
+.FIELD in_EmployeeNo * VARCHAR(10);
+.FIELD in_FirstName * VARCHAR(30);
+.FIELD in_LastName * VARCHAR(30);
+
+.FIELD in_BirthDate * VARCHAR(10);
+.FIELD in_JoinedDate * VARCHAR(10);
+.FIELD in_DepartmentNo * VARCHAR(02);
+
+ .DML LABEL Shivi_EMPLOYEE_STG_10 ;
+
+ INSERT INTO Shivi_EMPLOYEE_STG_10 VALUES
+ (:in_EmployeeNo,
+  :in_FirstName,
+  :in_Lastname,
+  :in_BirthDate, 
+  :in_JoinedDate,
+  :in_DepartmentNo);
+
+
+ .DML LABEL Shivi_EMPLOYEE_STG_20 ;
+
+ INSERT INTO Shivi_EMPLOYEE_STG_20 VALUES
+ (:in_EmployeeNo,
+  :in_FirstName,
+  :in_Lastname,
+  :in_BirthDate, 
+  :in_JoinedDate,
+  :in_DepartmentNo);
+
+.IMPORT INFILE emp.txt
+
+  LAYOUT Shivi_EMPLOYEE_STG
+
+  FORMAT VARTEXT ','
+
+  APPLY shivi_EMPLOYEE_STG_10
+
+  APPLY shivi_EMPLOYEE_STG_20;
+
+ .END MLOAD;
+
+ .LOGOFF;
+
+
+
+
+
+
+
+
+
+
+3:20 PM 12/22/2018
+
+3:31 PM 12/22/2018
+
+3:31 PM 12/22/2018
+
+6:03 PM 12/24/2018
+
+10:53 AM 12/25/2018
+
+2:34 PM 12/25/2018
+
+2:35 PM 12/25/2018
+
+2:38 PM 12/25/2018
